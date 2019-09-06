@@ -25,7 +25,7 @@ function Header() {
     //styling 
     header.classList.add('header');
     date.classList.add('date');
-    lambdaTimes.classList.add('.h1');
+    lambdaTimes.classList.add('h1');
     temp.classList.add('temp');
 
     //information that is being entered
