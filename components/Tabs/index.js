@@ -7,51 +7,30 @@
 //
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
-axios.get('https://lambda-times-backend.herokuapp.com/topics');
+
+axios.get('https://lambda-times-backend.herokuapp.com/topics')
+
+    .then(e => {
+        let top = e.data.topics;
+        top.forEach(element => {
+            tabsApp.appendChild(Tabs(element));
+        });
+    })
 
 const tabsApp = document.querySelector('.topics')
 
-topics = ["javascript","bootstrap","technology","jquery","node.js"]
+function Tabs (topicTitle) {
+    //created elements
+    const tab = document.createElement('div');
+    const allTab = document.createElement('div');
 
-function Tabs (array) {
+    //style 
+    tab.classList.add('tab');
+    allTab.classList.add('tab');
 
-    array.forEach(e => {
-        const tab = document.createElement('div');
-        tab.classList.add('tab');
-        tab.textContent = e;
-        tabsApp.appendChild(tab);
-    });
-    // const tab = document.createElement('div');
+    //content 
+    tab.textContent = topicTitle;
+    allTab.textContent = 'All';
 
-    // tab.classList.add('.tabs');
-
-    // topics.forEach(e =>{
-    //     const tab = document.createElement('div');
-    //     tab.classList.add('.tabs');
-    //     tab.textContent = e;
-    //     return tab;
-    // })
-
-    // return tab;
+    return tab;
 }
-
-Tabs(topics);
-
-// followersArray.forEach(e => {
-//     axios.get('https://api.github.com/users/'+ e)
-  
-//     .then (data => {
-//       const card = userCard(data.data)
-//       const cards = document.querySelector('.cards')
-//       cards.appendChild(card)
-//     })
-  
-//     try {
-  
-//     } catch (error) {
-//       document.querySelector('.cards').textContent = 'error somewhere idk where'
-//     }
-//   })
-
-  //the array 
-  topics = ["javascript","bootstrap","technology","jquery","node.js"]

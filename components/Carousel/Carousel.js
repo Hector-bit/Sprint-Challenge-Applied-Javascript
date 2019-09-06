@@ -17,3 +17,10 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+const left = document.querySelector('.left-button');
+const right = document.querySelector('.right-button')
+
+left.addEventListener('click', (e) => {
+  
+})
