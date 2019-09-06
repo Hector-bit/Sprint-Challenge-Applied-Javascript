@@ -11,15 +11,31 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics');
 
 const tabsApp = document.querySelector('.topics')
 
-function Tabs () {
-    const tab = document.createElement('div');
+topics = ["javascript","bootstrap","technology","jquery","node.js"]
 
-    tab.classList.add('.tabs');
+function Tabs (array) {
 
-    tab.textContent = topics.forEach(e =>{
-        tab.appendChild(e);
-    })
+    array.forEach(e => {
+        const tab = document.createElement('div');
+        tab.classList.add('tab');
+        tab.textContent = e;
+        tabsApp.appendChild(tab);
+    });
+    // const tab = document.createElement('div');
+
+    // tab.classList.add('.tabs');
+
+    // topics.forEach(e =>{
+    //     const tab = document.createElement('div');
+    //     tab.classList.add('.tabs');
+    //     tab.textContent = e;
+    //     return tab;
+    // })
+
+    // return tab;
 }
+
+Tabs(topics);
 
 // followersArray.forEach(e => {
 //     axios.get('https://api.github.com/users/'+ e)
