@@ -20,7 +20,9 @@
 
 //axios.get('https://lambda-times-backend.herokuapp.com/articles');
 
-function Cards(something){
+const cardsContainer = document.querySelector('.cards-container');
+
+function Cards(object){
     const card = document.createElement('div');
     const headline = document.createElement('div');
     const author = document.createElement('div');
@@ -37,31 +39,52 @@ function Cards(something){
 
     //styling
     card.classList.add('card');
+    headline.classList.add('headline');
+    author.classList.add('author');
+    imgContainer.classList.add('img-container');
 
     //context
-    headline.textContent = something.data;
-    console.log(something.promise);
+    headline.textContent = object.headline;
+    image.src = object.authorPhoto;
+    authorName.textContent = object.authorName;
+
+    //image.src = object.;
+    console.log(object.headline);
 
     return card;
 }
 
-Cards(axios.get('https://lambda-times-backend.herokuapp.com/articles'));
+// Cards(axios.get('https://lambda-times-backend.herokuapp.com/articles'));
 
-console.log(axios.get('https://lambda-times-backend.herokuapp.com/articles'));
+// console.log(axios.get('https://lambda-times-backend.herokuapp.com/articles'));
 
 // articles.forEach(e => {
-//     axios.get('https://lambda-times-backend.herokuapp.com/articles')
+    axios.get('https://lambda-times-backend.herokuapp.com/articles')
   
-//     .then (data => {
-//       const card = Cards(data.data)
-//       const cards = document.querySelector('.cards')
-//       cards.appendChild(card)
-//     })
+
+
+    .then (res => {
+        //console.log(res);
+        let catagories = Object.keys(res.data.articles);
+        catagories.forEach(catagory => {
+            //console.log(catagory);
+            res.data.articles[catagory].forEach(article =>{
+                console.log(Cards(article));
+                cardsContainer.appendChild(Cards(article));
+                
+            })
+        })
+    //   const card = Cards(data.data)
+    //   const cards = document.querySelector('.cards')
+    //   cards.appendChild(card)
+    })
+
+    // cardsContainer.appendChild(Cards(axios.get('https://lambda-times-backend.herokuapp.com/articles')));
   
-//     try {
+    // console.log(cardsContainer.appendChild(Cards(axios.get('https://lambda-times-backend.herokuapp.com/articles'))));
+    // try {
   
-//     } catch (error) {
-//       document.querySelector('.cards').textContent = 'error somewhere idk where'
-//     }
-//   })
+    // } catch (error) {
+    //   document.querySelector('.cards').textContent = 'error somewhere idk where'
+    // }
 
